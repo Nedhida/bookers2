@@ -1,2 +1,58 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>User info</h2>
+
+        <table class="table">
+          <% form_with model:@user, local:true do |f| %>
+          <tbody>
+            <tr></tr>
+            <tr>
+              <th>name</th>
+              <th><%= f.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= f.profile %></th>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+        <div class="row">
+          <a class="btn btn-outline-secondary btn-block fas fa-user-cog" href="/users/:id/edit"></a>
+        </div>
+        <h2 class="mt-3">New book</h2>
+        <%= form_with model:@book,url:'/books', local:true do |f| %>
+          <div class="form-group">
+            <%= f.label(:title, "Title") %>
+            <%= f.text_field :title %>
+          </div>
+          <div class="form-group">
+            <%= f.label(:opinion, "Opinion") %>
+            <%= f.text_area :opinion %>
+          </div>
+          <div class="from-grop">
+            <%= f.submit "Create Book", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-8 offset-md-1">
+        <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
