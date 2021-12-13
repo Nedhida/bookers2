@@ -1,6 +1,4 @@
 class BooksController < ApplicationController
-  def edit
-  end
 
   def index
     @user = current_user
@@ -9,9 +7,10 @@ class BooksController < ApplicationController
   end
 
   def show
+    #bookのidが＠userに入ってしまっているのか？エラーが出る
     @user = User.find(params[:id])
     @book = Book.new
-    @books = @user.books
+    @books = Book.find(params[:id])
   end
 
   def create
@@ -19,6 +18,10 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     @book.save
     redirect_to book_path(current_user)
+  end
+
+  def edit
+    @book = Book.find(params[:id])
   end
 
   def destroy

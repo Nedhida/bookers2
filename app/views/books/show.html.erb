@@ -6,28 +6,26 @@
         <h2>Book detail</h2>
         <table class="table">
           <tbody>
-            <% @books.each do |book| %>
-              <tr>
+            <tr>
+              <td>
+                <%= attachment_image_tag @books.user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
+                <%= link_to @books.user.name, user_path(@user) %>
+              </td>
+              <td>
+                <%= link_to @books.title, book_path(@books) %>
+              </td>
+              <td>
+                <%= @books.opinion %>
+              </td>
+              <% if @user.id == current_user.id %>
                 <td>
-                  <%= attachment_image_tag book.user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
-                  <%= link_to book.user.name, user_path(@user) %>
+                  <%= link_to "Edit", edit_book_path(@books) %>
                 </td>
                 <td>
-                  <%= link_to book.title, book_path(book.user.id) %>
+                  <%= link_to "Destroy",book_path(@books),confirm: '本当に消しますか？', method: :delete %>
                 </td>
-                <td>
-                  <%= book.opinion %>
-                </td>
-                <% if @user.id == current_user.id %>
-                  <td>
-                    <%= link_to "Edit", edit_book_path(book) %>
-                  </td>
-                  <td>
-                    <%= link_to "Destroy",book_path(book), method: :delete %>
-                  </td>
-                <% end %>
-              </tr>
-            <% end %>
+              <% end %>
+            </tr>
           </tbody>
         </table>
       </div>
