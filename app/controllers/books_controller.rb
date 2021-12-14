@@ -7,10 +7,10 @@ class BooksController < ApplicationController
   end
 
   def show
-    #bookのidが＠userに入ってしまっているのか？エラーが出る
-    @user = User.find(params[:id])
-    @book = Book.new
+    #LoadではそれぞれIDを取得している。１ページに１ID？
     @books = Book.find(params[:id])
+    @book = Book.new
+    @user = @book.user_id
   end
 
   def create

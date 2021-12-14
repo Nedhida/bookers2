@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    if params[:id].to_i != current_user.id
+      render user_path(current_user)
+    end
   end
 
 end
