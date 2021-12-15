@@ -1,6 +1,6 @@
 <main>
   <%= render 'layouts/flash' %>
-  <div class="container px-5 px-sm-0">
+  <div class="container">
     <div class="row">
       <%= render partial: 'users/user_info', locals: { user: @user, book: @book } %>
       <div class="col-md-8 offset-md-1">
@@ -9,8 +9,11 @@
           <tbody>
             <tr>
               <td>
-                <%= attachment_image_tag @books.user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
-                <%= link_to @books.user.name, user_path(@user) %>
+                <%= link_to user_path(@user) do %>
+                  <%= attachment_image_tag @books.user, :profile_image, fallback: "user_no_image.jpg", size: "40x40" %>
+                  <br>
+                  <%= @books.user.name %>
+                <% end %>
               </td>
               <td>
                 <%= link_to @books.title, book_path(@books) %>
@@ -20,10 +23,10 @@
               </td>
               <% if @user.id == current_user.id %>
                 <td>
-                  <%= link_to "Edit", edit_book_path(@books) %>
+                  <%= link_to "Edit", edit_book_path(@books), class:"btn btn-sm btn-success" %>
                 </td>
                 <td>
-                  <%= link_to "Destroy",book_path(@books),confirm: '本当に消しますか？', method: :delete %>
+                  <%= link_to "Destroy",book_path(@books), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-sm btn-danger" %>
                 </td>
               <% end %>
             </tr>

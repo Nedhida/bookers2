@@ -15,10 +15,24 @@
  */
 @import "bootstrap";
 
+div.field,div.actions {
+  margin-bottom: 10px;
+}
+
 strong {
   font-weight: bolder;
 }
 
+.notice {
+  color: green;
+  margin-bottom: 1rem;
+}
+
 .form-grop {
   margin-bottom: 1rem;
+}
+
+.fas {
+  font-weight: 600;
+  line-height: normal;
 }
