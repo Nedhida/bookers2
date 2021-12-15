@@ -12,11 +12,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  before_action :current_user, only: [:edit, :update]
   def edit
     @user = User.find(params[:id])
-    if params[:id].to_i != current_user.id
-      redirect_to user_path(current_user)
-    end
   end
 
   def update
@@ -28,9 +26,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def current_user
+    if params[:id].to_i != current_user.id
+      redirect_to user_path(current_user)
+    end
+  end
+
   private
   def user_params
-    params.require(:user).permit(:name, :image, :profile)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
 end
