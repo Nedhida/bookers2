@@ -12,8 +12,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  before_action :current_user, only: [:edit, :update]
+
   def edit
+    #!cuurent_user.nil?
+    if params[:id].to_i != current_user.id
+      redirect_to user_path(current_user)
+    end
     @user = User.find(params[:id])
   end
 
@@ -23,12 +27,6 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user), notice: 'You have updated user successfully.'
     else
       render :edit
-    end
-  end
-
-  def current_user
-    if params[:id].to_i != current_user.id
-      redirect_to user_path(current_user)
     end
   end
 
