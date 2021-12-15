@@ -15,12 +15,12 @@
  */
 @import "bootstrap";
 
-div.field,div.actions {
-  margin-bottom: 10px;
+.color {
+  color: #212529 !important;
 }
 
-strong {
-  font-weight: bolder;
+div.field,div.actions {
+  margin-bottom: 10px;
 }
 
 .notice {
@@ -32,7 +32,6 @@ strong {
   margin-bottom: 1rem;
 }
 
-.fas {
-  font-weight: 600;
-  line-height: normal;
+#error_explanation {
+  color: red;
 }
